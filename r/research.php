@@ -503,8 +503,8 @@ if(isset($_POST["submit"]))
     $impactFactor=$_POST["impact"];
     $listedInScopus=$_GET["listedInScopus"]; 
     $listedIn=$_GET["listedIn"];
-    $listedInWebScience=$_GET["listedInWebScience"]; 
-    $peerReviewed=$_GET["peerReviewed"];
+    //$listedInWebScience=$_GET["listedInWebScience"]; 
+    //$peerReviewed=$_GET["peerReviewed"];
     $issn=$_POST["issn"];
     $isbn=$_POST["isbn"];
     $publisherName=$_POST["publishername"];
@@ -517,7 +517,7 @@ if(isset($_POST["submit"]))
     $anyInfo=$_POST["anyinfo"];
     $ref=$_POST["ref"];
     $con=mysqli_connect("localhost","root","","form");
-    $sql="INSERT INTO `research`(`university`, `department`, `facultyScientist`, `empId`, `authorName`, `coAuthor`, `paperTitle`, `journalName`, `researchPaper`, `region`, `publicationDate`, `publicationYear`, `volume`, `pageFrom`, `pageTo`, `impactFactor`, `listedInScopus`, `listedIn`, `listedInWebScience`, `peerReviewed`, `issn`, `isbn`, `publisherName`, `institutionalAffiliations`, `correspondingAuthor`, `citationIndex`, `citationNumber`, `link`, `evidence`, `anyInfo`, `ref`) VALUES ('".$university."','".$department."','".$faculty."','".$emp_id."','".$author."','".$coAuthor."','".$paperTitle."','".$journalName."','".$article."','".$region."','".$publicationDate."','".$pubYear."','".$edition."','".$pageFrom."','".$pageTo."','".$impactFactor."','".$listedInScopus."','".$listedIn."','".$listedInWebScience."','".$peerReviewed."','".$issn."','".$isbn."','".$publisherName."','".$affiliation."','".$correspondAuthor."','".$citNumber."','".$numOfCit."','".$link."','".$upload."','".$anyInfo."','".$ref."')";
+    $sql="INSERT INTO `research`(`university`, `department`, `facultyScientist`, `empId`, `authorName`, `coAuthor`, `paperTitle`, `journalName`, `researchPaper`, `region`, `publicationDate`, `publicationYear`, `volume`, `pageFrom`, `pageTo`, `impactFactor`, `listedInScopus`, `listedIn`, `issn`, `isbn`, `publisherName`, `institutionalAffiliations`, `correspondingAuthor`, `citationIndex`, `citationNumber`, `link`, `evidence`, `anyInfo`, `ref`) VALUES ('".$university."','".$department."','".$faculty."','".$emp_id."','".$author."','".$coAuthor."','".$paperTitle."','".$journalName."','".$article."','".$region."','".$publicationDate."','".$pubYear."','".$edition."','".$pageFrom."','".$pageTo."','".$impactFactor."','".$listedInScopus."','".$listedIn."','".$issn."','".$isbn."','".$publisherName."','".$affiliation."','".$correspondAuthor."','".$citNumber."','".$numOfCit."','".$link."','".$upload."','".$anyInfo."','".$ref."')";
     mysqli_query($con,$sql);
     echo "Data has been inserted successfully\n";
     foreach ($_POST as $key => $value) {
