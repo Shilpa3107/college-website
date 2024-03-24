@@ -325,7 +325,7 @@ select {
                         <input type="text" name="article" required="required">
                         <span>Reseach Paper/Article</span>
                     </div>
-                        <label for="cars" class="row1">Region:</label>
+                        <label for="cars" class="row1" name="region">Region:</label>
 						 <div class="inputbox" id="select">
                             <select name="National" id="National">
                             <option value="National">National</option>
@@ -373,7 +373,7 @@ select {
                         <input type="text" name="impact" required="required">
                         <span>Impact Factor</span>
                     </div>
-                    <label for="listed in scopus" class="row1">Listed in Scopus: </label>
+                    <label for="listed in scopus" class="row1" name="listedInScopus">Listed in Scopus: </label>
                      <div class="radio-options">
                        <input name="radiobutton" type="radio" value="Yes" id="yes-option" />
                         <label for="yes-option">Yes</label>
@@ -382,7 +382,7 @@ select {
                      </div>
                     </div>
                     <div class="row">
-                       <label for="cars">Listed in :</label>
+                       <label for="cars" name="listedIn">Listed in :</label>
 					   <div class="inputbox" id="select">
                         <select name="National" id="National">
                           <option>UGC</option>
@@ -391,7 +391,7 @@ select {
                           <option>Others</option>
                         </select>
                      </div>
-                        <label for="faculty" class="row1">Listed in Web of Science (Thomas Reuters) (Clarivate Analytics): </label>
+                        <label for="faculty" class="row1" name="listedInWebScience">Listed in Web of Science (Thomas Reuters) (Clarivate Analytics): </label>
                         <div class="radio-options">
                        <input name="radiobutton" type="radio" value="Yes" id="yes-option" />
                         <label for="yes-option">Yes</label>
@@ -402,7 +402,7 @@ select {
 
 
             <div class="row">
-			 <label for="emp_id">Peer Reviewed:</label>
+			 <label for="emp_id" name="peerReviewed">Peer Reviewed:</label>
                        <div class="radio-options">
                        <input name="radiobutton" type="radio" value="Yes" id="yes-option" />
                         <label for="yes-option">Yes</label>
@@ -494,17 +494,17 @@ if(isset($_POST["submit"]))
     $paperTitle=$_POST["papertitle"];
     $journalName=$_POST["journalname"];
     $article=$_POST["article"];
-    //$university=$_GET["university"]; region
+    $region=$_GET["region"]; 
     $publicationDate=$_POST["publicationdate"];
     $pubYear=$_POST["pubyear"];
     $edition=$_POST["Edition"];
     $pageFrom=$_POST["from"];
     $pageTo=$_POST["to"];
     $impactFactor=$_POST["impact"];
-    //$university=$_GET["university"]; listed in scopus
-    //$university=$_GET["university"]; listed in
-    //$university=$_GET["university"]; lsited in web science
-    //$university=$_GET["university"]; peer reviewed
+    $listedInScopus=$_GET["listedInScopus"]; 
+    $listedIn=$_GET["listedIn"];
+    $listedInWebScience=$_GET["listedInWebScience"]; 
+    $peerReviewed=$_GET["peerReviewed"];
     $issn=$_POST["issn"];
     $isbn=$_POST["isbn"];
     $publisherName=$_POST["publishername"];
@@ -513,11 +513,11 @@ if(isset($_POST["submit"]))
     $citNumber=$_POST["citnumber"];
     $numOfCit=$_POST["noofcit"];
     $link=$_POST["link"];
-    //$university=$_GET["university"];  evidence upload
+    $upload=$_GET["upload"]; 
     $anyInfo=$_POST["anyinfo"];
     $ref=$_POST["ref"];
     $con=mysqli_connect("localhost","root","","form");
-    $sql="INSERT INTO `research`(`university`, `department`, `faculty/Scientist`, `employee_id`, `authorName`, `correspondingName`, `paperTitle`, `journalName`, `researchPaper`, `publicationDate`, `publicationYear`, `volume`, `pageFrom`, `pageInt`, `impactFactor`, `issn`, `isbn`, `publisherName`, `instituationalAffiliation`, `correspondingAuthor`, `citationIndex`, `numberOfCitation`, `link`, `anyInformation`, `ref`) VALUES ('".$university."','".$department."','".$faculty."','".$emp_id."','".$author."','".$coAuthor."','".$paperTitle."','".$journalName."','".$article."','".$article."','".$publicationDate."','".$pubYear."','".$edition."','".$pageFrom."','".$pageTo."','".$impactFactor."','".$issn."','".$isbn."','".$publisherName."','".$affiliation."','".$correspondAuthor."','".$citNumber."','".$numOfCit."','".$link."','".$anyInfo."','".$ref."')";
+    $sql="INSERT INTO `research`(`university`, `department`, `facultyScientist`, `empId`, `authorName`, `coAuthor`, `paperTitle`, `journalName`, `researchPaper`, `region`, `publicationDate`, `publicationYear`, `volume`, `pageFrom`, `pageTo`, `impactFactor`, `listedInScopus`, `listedIn`, `listedInWebScience`, `peerReviewed`, `issn`, `isbn`, `publisherName`, `institutionalAffiliations`, `correspondingAuthor`, `citationIndex`, `citationNumber`, `link`, `evidence`, `anyInfo`, `ref`) VALUES ('".$university."','".$department."','".$faculty."','".$emp_id."','".$author."','".$coAuthor."','".$paperTitle."','".$journalName."','".$article."','".$region."','".$publicationDate."','".$pubYear."','".$edition."','".$pageFrom."','".$pageTo."','".$impactFactor."','".$listedInScopus."','".$listedIn."','".$listedInWebScience."','".$peerReviewed."','".$issn."','".$isbn."','".$publisherName."','".$affiliation."','".$correspondAuthor."','".$citNumber."','".$numOfCit."','".$link."','".$upload."','".$anyInfo."','".$ref."')";
     mysqli_query($con,$sql);
     echo "Data has been inserted successfully\n";
     foreach ($_POST as $key => $value) {
